@@ -8,7 +8,6 @@ export default function Home() {
   const [select, setSelect] = useState("");
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_API_URL);
     axios
       .get(`${process.env.REACT_APP_API_URL}/cities`)
       .then((res) => {
