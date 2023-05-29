@@ -56,9 +56,6 @@ export default function DetalhesPassagem() {
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  background-color: #fff5b8;
 `;
 
 const Header = styled.div`
@@ -68,7 +65,7 @@ const Header = styled.div`
   align-items: center;
   width: 100%;
   height: 40px;
-  background-color: #00c4ff;
+  background-color: #79E0EE;
   h1 {
     margin-left: 20px;
   }

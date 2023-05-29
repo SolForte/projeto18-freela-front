@@ -60,7 +60,7 @@ export default function HospedagensEmCidade() {
         </Header>
         <MainContent>
           <div>
-            <h1>Hospedagens em {city?.name}</h1>
+            <h1>Hospedagens em {city.name ? city.name : "cidade"}</h1>
           </div>
           <Filters>
             <Filter>
@@ -85,13 +85,13 @@ export default function HospedagensEmCidade() {
             </Filter>
           </Filters>
           <Lodgings>
-            {filteredLodgings.map((lodging) => (
-              <div key={lodging.id} onClick={() => selectLodging(lodging.id)}>
+            {filteredLodgings.length > 0 ? filteredLodgings.map((lodging) => (
+              <Lodging key={lodging.id} onClick={() => selectLodging(lodging.id)}>
                   <img src={lodging?.mainPhoto} alt={lodging?.name} />
                   <p>Nome: {lodging.name}</p>
                   <p>Preço: R$ {lodging.price}</p>
-              </div>
-            ))}
+              </Lodging>
+            )) : <Nenhuma>Nenhuma hospedagem encontrada para {city.name ? city.name : "cidade"}</Nenhuma>}
           </Lodgings>
         </MainContent>
       </HomeContainer>
@@ -99,20 +99,63 @@ export default function HospedagensEmCidade() {
   );
 }
 
-const Filters = styled.div``;
+const Nenhuma = styled.p`
+  color: #00c4ff;
+  font-family: "Lexend Deca", sans-serif;
+`;
 
-const Filter = styled.div``;
+const Filters = styled.div`
+  background-color: #98eecc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+`;
 
-const Lodgings = styled.div``;
+const Filter = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
+  p {
+    font-family: "Lexend Deca", sans-serif;
+    color: #00c4ff;
+  }
+`;
+
+const Lodgings = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 20px;
+`;
+
+const Lodging = styled.div`
+  background-color: #30A2FF;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p{
+    color: white;
+    margin-top: 5px;
+    font-family: "Lexend Deca", sans-serif;
+  }
+`;
 
 //=================================================
 
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  background-color: #fff5b8;
+  img {
+    width: 290px;
+    border-radius: 10px;
+  }
 `;
 
 const Header = styled.div`
@@ -122,19 +165,35 @@ const Header = styled.div`
   align-items: center;
   width: 100%;
   height: 40px;
-  background-color: #00c4ff;
+  background-color: #79e0ee;
   h1 {
     margin-left: 20px;
+    color: white;
+    font-family: "Lexend Deca", sans-serif;
+    font-weight: bold;
   }
   h2 {
     margin-right: 20px;
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
   }
 `;
 
 const MainContent = styled.div`
+  margin-top: 40px;
   box-sizing: border-box;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  div {
+    h1 {
+      font-family: "Lexend Deca", sans-serif;
+      font-weight: bold;
+      font-size: 20px;
+      color: #30a2ff;
+      margin-bottom: 20px;
+    }
+  }
 `;

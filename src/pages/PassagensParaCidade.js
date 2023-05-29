@@ -56,11 +56,11 @@ export default function PassagensParaCidade() {
           <Link to={`/`}>
             <h1>Viagens Alucinantes</h1>
           </Link>
-            <h2 onClick={handleVoltar}>Voltar</h2>
+          <h2 onClick={handleVoltar}>Voltar</h2>
         </Header>
         <MainContent>
           <div>
-            <h1>Passagens para {city?.name}</h1>
+            <h1>Passagens para {city.name ? city.name : "cidade"}</h1>
           </div>
           <Filters>
             <Filter>
@@ -85,15 +85,22 @@ export default function PassagensParaCidade() {
             </Filter>
           </Filters>
           <Flights>
-            {filteredFlights.map((flight) => (
-              <div key={flight.id} onClick={() => selectFlight(flight.id)}>
-                <img src={city?.photo} alt={city?.name} />
-                <p>Horário de saída: {flight.departureDate}</p>
-                <p>Horário de chegada: {flight.arrivalDate}</p>
-                <p>Preço: R$ {flight.price}</p>
-                <p>Local de partida: {flight.destination}</p>
-              </div>
-            ))}
+            {filteredFlights.length > 0 ? (
+              filteredFlights.map((flight) => (
+                <Flight key={flight.id} onClick={() => selectFlight(flight.id)}>
+                  <img src={city?.photo} alt={city?.name} />
+                  <p>Horário de saída: {flight.departureDate}</p>
+                  <p>Horário de chegada: {flight.arrivalDate}</p>
+                  <p>Preço: R$ {flight.price}</p>
+                  <p>Local de partida: {flight.destination}</p>
+                </Flight>
+              ))
+            ) : (
+              <Nenhuma>
+                Nenhuma passagem encontrada para{" "}
+                {city.name ? city.name : "cidade"}
+              </Nenhuma>
+            )}
           </Flights>
         </MainContent>
       </HomeContainer>
@@ -101,20 +108,63 @@ export default function PassagensParaCidade() {
   );
 }
 
-const Filters = styled.div``;
+const Nenhuma = styled.p`
+  color: #00c4ff;
+  font-family: "Lexend Deca", sans-serif;
+`;
 
-const Filter = styled.div``;
+const Filters = styled.div`
+  background-color: #98eecc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+`;
 
-const Flights = styled.div``;
+const Filter = styled.div`
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-end;
+  p {
+    font-family: "Lexend Deca", sans-serif;
+    color: #00c4ff;
+  }
+`;
+
+const Flights = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 20px;
+`;
+
+const Flight = styled.div`
+  background-color: #30A2FF;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  p{
+    color: white;
+    margin-top: 5px;
+    font-family: "Lexend Deca", sans-serif;
+  }
+`;
 
 //=================================================
 
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  background-color: #fff5b8;
+  img {
+    width: 290px;
+    border-radius: 10px;
+  }
 `;
 
 const Header = styled.div`
@@ -124,19 +174,35 @@ const Header = styled.div`
   align-items: center;
   width: 100%;
   height: 40px;
-  background-color: #00c4ff;
+  background-color: #79e0ee;
   h1 {
     margin-left: 20px;
+    color: white;
+    font-family: "Lexend Deca", sans-serif;
+    font-weight: bold;
   }
   h2 {
     margin-right: 20px;
+    color: black;
+    font-family: "Lexend Deca", sans-serif;
+    font-weight: bold;
+    cursor: pointer;
   }
 `;
 
 const MainContent = styled.div`
+  margin-top: 40px;
   box-sizing: border-box;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  div {
+    h1 {
+      font-family: "Lexend Deca", sans-serif;
+      font-weight: bold;
+      font-size: 20px;
+      color: #30a2ff;
+      margin-bottom: 20px;
+    }
+  }
 `;

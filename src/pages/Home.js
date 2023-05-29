@@ -41,28 +41,56 @@ export default function Home() {
               </option>
             ))}
           </Select>
-          <Link to={select === "" ? `/` : `/cidades/${select}/passagens`}>
-            <p>Passagens</p>
-          </Link>
-          <Link to={select === "" ? `/` : `/cidades/${select}/hospedagens`}>
-            <p>Hospedagens</p>
-          </Link>
+          <ChoiceBox>
+            <Choice>
+              <Link to={select === "" ? `/` : `/cidades/${select}/passagens`}>
+                <p>Clique para ver passagens para a cidade selecionada.</p>
+              </Link>
+            </Choice>
+            <Choice>
+              <Link to={select === "" ? `/` : `/cidades/${select}/hospedagens`}>
+                <p>Clique para ver hospedagens para a cidade selecionada.</p>
+              </Link>
+            </Choice>
+          </ChoiceBox>
         </MainContent>
       </HomeContainer>
     </>
   );
 }
 
-const Select = styled.select``;
+const ChoiceBox = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+
+const Choice = styled.div`
+  width: 140px;
+  background-color: #98EECC;
+  justify-content: center;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  p{
+    color: #30A2FF;
+    font-weight: bold;
+    font-family: "Lexend Deca", sans-serif;
+  }
+`;
+
+const Select = styled.select`
+  font-family: "Roboto", sans-serif;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+  cursor: pointer;
+  margin-bottom: 40px;
+`;
 
 //=================================================
 
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  background-color: #fff5b8;
 `;
 
 const Header = styled.div`
@@ -72,13 +100,17 @@ const Header = styled.div`
   align-items: center;
   width: 100%;
   height: 40px;
-  background-color: #00c4ff;
+  background-color: #79e0ee;
   h1 {
     margin-left: 20px;
+    color: white;
+    font-family: "Lexend Deca", sans-serif;
+    font-weight: bold;
   }
 `;
 
 const MainContent = styled.div`
+  margin-top: 80px;
   box-sizing: border-box;
   width: 100%;
   display: flex;
