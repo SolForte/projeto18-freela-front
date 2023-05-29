@@ -60,7 +60,7 @@ export default function PassagensParaCidade() {
         </Header>
         <MainContent>
           <div>
-            <h1>Passagens para {city.name ? city.name : "cidade"}</h1>
+            <h1>Passagens para {city.name ? city?.name : "cidade"}</h1>
           </div>
           <Filters>
             <Filter>

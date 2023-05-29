@@ -31,9 +31,10 @@ export default function Home() {
           </Link>
         </Header>
         <MainContent>
+          <Guide>Primeiro, selecione uma cidade:</Guide>
           <Select value={select} onChange={handleSelect}>
             <option disabled value="">
-              Selecione a cidade de destino
+              Selecione a sua cidade de destino
             </option>
             {cities.map((city) => (
               <option key={city.id} value={city.id}>
@@ -58,6 +59,14 @@ export default function Home() {
     </>
   );
 }
+
+const Guide = styled.h1`
+  margin-bottom: 10px;
+  font-family: "Lexend Deca", sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: #30A2FF;
+`;
 
 const ChoiceBox = styled.div`
   display: flex;
