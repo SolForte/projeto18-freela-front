@@ -89,6 +89,7 @@ export default function PassagensParaCidade() {
               filteredFlights.map((flight) => (
                 <Flight key={flight.id} onClick={() => selectFlight(flight.id)}>
                   <img src={city?.photo} alt={city?.name} />
+                  <p>Compania Aérea: {flight.companyName}</p>
                   <p>Horário de saída: {flight.departureDate}</p>
                   <p>Horário de chegada: {flight.arrivalDate}</p>
                   <p>Preço: R$ {flight.price}</p>
