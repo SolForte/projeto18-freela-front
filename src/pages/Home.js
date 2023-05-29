@@ -26,7 +26,9 @@ export default function Home() {
     <>
       <HomeContainer>
         <Header>
-          <h1>Viagens Alucinantes</h1>
+          <Link to={`/`}>
+            <h1>Viagens Alucinantes</h1>
+          </Link>
         </Header>
         <MainContent>
           <Select value={select} onChange={handleSelect}>
@@ -42,7 +44,7 @@ export default function Home() {
           <Link to={select === "" ? `/` : `/cidades/${select}/passagens`}>
             <p>Passagens</p>
           </Link>
-          <Link to={select === "" ? `/` :`/cidades/${select}/hospedagens`}>
+          <Link to={select === "" ? `/` : `/cidades/${select}/hospedagens`}>
             <p>Hospedagens</p>
           </Link>
         </MainContent>

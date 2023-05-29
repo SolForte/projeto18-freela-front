@@ -6,8 +6,7 @@ import styled from "styled-components";
 export default function DetalhesPassagem() {
   const { id } = useParams();
 
-  const [flight, setFlight] = useState({});
-  const [city, setCity] = useState("");
+  const [flight, setFlight] = useState();
 
   const navigate = useNavigate();
 
@@ -15,44 +14,44 @@ export default function DetalhesPassagem() {
     axios
       .get(`${process.env.REACT_APP_API_URL}/flights/${id}`)
       .then((res) => {
-        console.log(res.data)
+        setFlight(res.data);
       })
       .catch((error) => {
         console.error(error);
       });
-    // eslint-disable-next-line
   }, [id]);
 
+  const handleVoltar = () => {
+    navigate(-1);
+  };
 
   return (
     <>
       <HomeContainer>
         <Header>
-          <h1>Viagens Alucinantes</h1>
           <Link to={`/`}>
-            <h2>Voltar</h2>
+            <h1>Viagens Alucinantes</h1>
           </Link>
+          <h2 onClick={handleVoltar}>Voltar</h2>
         </Header>
-        <MainContent></MainContent>
+        <MainContent>
+          <h1>Passagem para {flight?.destination}</h1>
+          <div>
+            <p>Cidade de destino: {flight?.destination}</p>
+            <p>Cidade de Origem: {flight?.origin}</p>
+            <p>Companhia aérea: {flight?.companyName}</p>
+            <p>Horário de partida: {flight?.departureDate}</p>
+            <p>Horário previsto de chegada: {flight?.arrivalDate}</p>
+            <p>Preço da passagem: R$ {flight?.price}</p>
+          </div>
+          <Link to={`/cidades/${flight?.destinationCityId}/hospedagens`}>
+            <p>Ver hospedagens</p>
+          </Link>
+        </MainContent>
       </HomeContainer>
     </>
   );
 }
-
-/*
-{
-  "id": 2,
-  "companyName": "Bol",
-  "origin": "Teresina",
-  "destination": "São Luís",
-  "destinationCityId": 1,
-  "departureDate": "29/05/2023 06:00",
-  "arrivalDate": "29/05/2023 07:30",
-  "price": "200"
-}
-*/
-
-//============================================================
 
 const HomeContainer = styled.div`
   display: flex;

@@ -42,16 +42,20 @@ export default function PassagensParaCidade() {
 
   const selectFlight = (id) => {
     navigate(`/passagens/${id}`);
-  }
+  };
+
+  const handleVoltar = () => {
+    navigate(-1);
+  };
 
   return (
     <>
       <HomeContainer>
         <Header>
-          <h1>Viagens Alucinantes</h1>
           <Link to={`/`}>
-            <h2>Voltar</h2>
+            <h1>Viagens Alucinantes</h1>
           </Link>
+            <h2 onClick={handleVoltar}>Voltar</h2>
         </Header>
         <MainContent>
           <div>
@@ -80,15 +84,14 @@ export default function PassagensParaCidade() {
             </Filter>
           </Filters>
           <Flights>
-            
             {filteredFlights.map((flight) => (
-             <div key={flight.id} onClick={() => selectFlight(flight.id)}>
-                  <img src={city?.photo} alt={city?.name}/>
-                  <p>Horário de saída: {flight.departureDate}</p>
-                  <p>Horário de chegada: {flight.arrivalDate}</p>
-                  <p>Preço: R$ {flight.price}</p>
-                  <p>Local de partida: {flight.destination}</p>
-             </div> 
+              <div key={flight.id} onClick={() => selectFlight(flight.id)}>
+                <img src={city?.photo} alt={city?.name} />
+                <p>Horário de saída: {flight.departureDate}</p>
+                <p>Horário de chegada: {flight.arrivalDate}</p>
+                <p>Preço: R$ {flight.price}</p>
+                <p>Local de partida: {flight.destination}</p>
+              </div>
             ))}
           </Flights>
         </MainContent>
