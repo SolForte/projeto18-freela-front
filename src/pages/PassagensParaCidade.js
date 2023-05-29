@@ -93,7 +93,7 @@ export default function PassagensParaCidade() {
                   <p>Horário de saída: {flight.departureDate}</p>
                   <p>Horário de chegada: {flight.arrivalDate}</p>
                   <p>Preço: R$ {flight.price}</p>
-                  <p>Local de partida: {flight.destination}</p>
+                  <p>Local de partida: {flight.origin}</p>
                 </Flight>
               ))
             ) : (
